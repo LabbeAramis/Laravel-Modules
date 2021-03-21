@@ -8,6 +8,7 @@
         "module",
         "rad"
     ],
+    "homepage": "https://github.com/LabbeAramis/Laravel-Modules",
     "license": "MIT",
     "authors": [
         {
