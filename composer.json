@@ -56,7 +56,8 @@
             }
         },
         "branch-alias": {
-            "master-dev": "0.1.1-dev"
+            "master-dev": "0.1.1-dev",
+            "dev-dev": "0.1.2-dev"
         },
         "module-dir": "Modules"
     },
