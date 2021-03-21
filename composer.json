@@ -19,8 +19,7 @@
     ],
     "require": {
         "php": ">=7.4",
-        "ext-json": "*",
-        "composer-plugin-api": "^2.0"
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5",
@@ -29,8 +28,7 @@
         "friendsofphp/php-cs-fixer": "^2.16",
         "laravel/framework": "^8.0",
         "spatie/phpunit-snapshot-assertions": "^2.1.0",
-        "phpstan/phpstan": "^0.12.14",
-        "composer/composer": "^2.0"
+        "phpstan/phpstan": "^0.12.14"
     },
     "autoload": {
         "psr-4": {
