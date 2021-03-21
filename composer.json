@@ -16,6 +16,12 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/LabbeAramis/Laravel-Modules"
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "ext-json": "*"
