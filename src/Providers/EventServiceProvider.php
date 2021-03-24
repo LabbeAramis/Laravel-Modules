@@ -22,14 +22,6 @@ class EventServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->singleton( 'mediator', function ( $app ) {
-
-            return ( new Mediator( $app ) )->setQueueResolver( function () use ( $app ) {
-
-                return $app->make( QueueFactoryContract::class );
-            } );
-        } );
-
         $this->booting( function () {
 
             $events = $this->getEvents();

@@ -157,6 +157,7 @@ return [
         Commands\NotificationMakeCommand::class,
         Commands\ProviderMakeCommand::class,
         Commands\RouteProviderMakeCommand::class,
+        Commands\EventProviderMakeCommand::class,
         Commands\InstallCommand::class,
         Commands\ListCommand::class,
         Commands\ModuleDeleteCommand::class,

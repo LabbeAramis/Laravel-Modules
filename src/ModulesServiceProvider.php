@@ -7,6 +7,7 @@ use LabbeAramis\Modules\Providers\BootstrapServiceProvider;
 use LabbeAramis\Modules\Providers\ConsoleServiceProvider;
 use LabbeAramis\Modules\Providers\ContractsServiceProvider;
 use LabbeAramis\Modules\Providers\EventServiceProvider;
+use LabbeAramis\Modules\EventServiceProvider as MediatorEventServiceProvider;
 
 /**
  * Class ModulesServiceProvider
@@ -76,6 +77,7 @@ abstract class ModulesServiceProvider extends ServiceProvider
 
         $this->app->register( ConsoleServiceProvider::class );
         $this->app->register( ContractsServiceProvider::class );
+        $this->app->register( MediatorEventServiceProvider::class );
         $this->app->register( EventServiceProvider::class );
     }
 }
