@@ -2,7 +2,7 @@
 
 namespace $NAMESPACE$;
 
-use $MODULE_NAMESPACE$\$MODULE$\$PROVIDER_NAMESPACE$\EventServiceProvider as ServiceProvider;
+use LabbeAramis\Modules\Providers\EventServiceProvider as ServiceProvider;
 
 /**
  * Class EventServiceProvider

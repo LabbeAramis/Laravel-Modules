@@ -214,7 +214,7 @@ return [
     */
 
     'composer'   => [
-        'vendor'          => 'LabbeAramis',
+        'vendor'          => 'labbearamis',
         'author'          => [
             'name'  => 'Labbe Aramis',
             'email' => 'labbe.aramis@gmail.com',
