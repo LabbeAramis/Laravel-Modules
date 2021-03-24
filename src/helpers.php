@@ -34,3 +34,18 @@ if (! function_exists('public_path')) {
         return app()->make('path.public') . ($path ? DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR) : $path);
     }
 }
+
+if (! function_exists('mediator_event')) {
+    /**
+     * Dispatch an event and call the listeners in Mediator.
+     *
+     * @param  string|object  $event
+     * @param  mixed  $payload
+     * @param  bool  $halt
+     * @return array|null
+     */
+    function mediator_event(...$args)
+    {
+        return app('mediator')->dispatch(...$args);
+    }
+}
