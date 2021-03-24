@@ -11,5 +11,30 @@ use LabbeAramis\Modules\Contracts\EventInterface;
  */
 class Event implements EventInterface
 {
-    //
+    /**
+     * @var bool
+     */
+    private bool $isRollback;
+
+    /**
+     * @return bool
+     */
+    public function isRollback(): bool
+    {
+
+        return $this->isRollback;
+    }
+
+    /**
+     * @param bool $isRollback
+     *
+     * @return $this
+     */
+    public function setIsRollback( bool $isRollback ): self
+    {
+
+        $this->isRollback = $isRollback;
+
+        return $this;
+    }
 }

@@ -24,6 +24,9 @@ abstract class Listener implements ListenerInterface
     {
 
         try {
+            if ( $event->isRollback() === true ) {
+                throw ListenerException::callbackError();
+            }
             if ( method_exists( $this, 'callback' ) === true ) {
                 return $this->callback( $event );
             }
