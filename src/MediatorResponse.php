@@ -63,4 +63,21 @@ final class MediatorResponse
 
         return $this->isSuccess;
     }
+
+    /**
+     * @param MediatorResponse[] $responses
+     *
+     * @return bool
+     */
+    public static function isSuccessAll( array $responses = [] ): bool
+    {
+
+        foreach ($responses as $response) {
+            if ( $response->isSuccess() === false ) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
