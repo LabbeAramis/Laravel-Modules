@@ -44,12 +44,12 @@ class Mediator extends Dispatcher
 
             $response = $this->createResponse( $listener( $event, $payload ) );
 
+            $passedListeners[] = $listener;
+
             if ( $response instanceof MediatorResponse
                 && $response->isSuccess() === false ) {
                 break;
             }
-
-            $passedListeners[] = $listener;
 
             // If a response is returned from the listener and event halting is enabled
             // we will just return this response, and not call the rest of the event
