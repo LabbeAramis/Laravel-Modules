@@ -331,11 +331,13 @@ class ModuleGenerator extends Generator
                 continue;
             }
 
-            $path = $this->module->getModulePath($this->getName()) . '/' . $folder->getPath();
+            $basePath = $this->module->getModulePath($this->getName());
+            $folderPath = $folder->getPath();
+            $path = $basePath . '/' . $folderPath;
 
             $this->filesystem->makeDirectory($path, 0755, true);
 
-            $this->console->info("Created : {$path}");
+            $this->console->info("Created : {$basePath}{$folderPath}");
 
             if (config('modules.stubs.gitkeep')) {
                 $this->generateGitKeep($path);
