@@ -336,7 +336,7 @@ class ModuleGenerator extends Generator
             $this->filesystem->makeDirectory($path, 0755, true);
 
             $this->console->info("Created : {$path}");
-            
+
             if (config('modules.stubs.gitkeep')) {
                 $this->generateGitKeep($path);
             }
