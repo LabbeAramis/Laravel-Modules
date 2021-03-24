@@ -5,7 +5,7 @@ namespace LabbeAramis\Modules;
 /**
  * Class MediatorResponse
  */
-class MediatorResponse
+final class MediatorResponse
 {
     /**
      * @var string|null
@@ -18,16 +18,23 @@ class MediatorResponse
     private $data;
 
     /**
+     * @var bool
+     */
+    private bool $isSuccess;
+
+    /**
      * MediatorResponse constructor.
      *
      * @param null $name
      * @param null $data
+     * @param bool $isSuccess
      */
-    public function __construct( $name = null, $data = null )
+    public function __construct( $name = null, $data = null, bool $isSuccess = false )
     {
 
-        $this->name = $name;
-        $this->data = $data;
+        $this->name      = $name;
+        $this->data      = $data;
+        $this->isSuccess = $isSuccess;
     }
 
     /**
@@ -46,5 +53,14 @@ class MediatorResponse
     {
 
         return $this->data;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSuccess(): bool
+    {
+
+        return $this->isSuccess;
     }
 }
