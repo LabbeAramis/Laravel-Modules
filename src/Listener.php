@@ -2,6 +2,7 @@
 
 namespace LabbeAramis\Modules;
 
+use LabbeAramis\Modules\Contracts\EventInterface;
 use LabbeAramis\Modules\Contracts\ListenerInterface;
 use LabbeAramis\Modules\Exceptions\ListenerException;
 
@@ -14,21 +15,23 @@ abstract class Listener implements ListenerInterface
 {
 
     /**
+     * @param EventInterface $event
+     *
      * @return MediatorResponse
      * @throws ListenerException
      */
-    public function handle(): MediatorResponse
+    public function handle( EventInterface $event ): MediatorResponse
     {
 
         try {
             if ( method_exists( $this, 'callback' ) === true ) {
-                return $this->callback( ...func_get_args() );
+                return $this->callback( $event );
             }
             throw ListenerException::callbackError();
         } catch (\Throwable $e) {
             try {
                 if ( method_exists( $this, 'fail' ) === true ) {
-                    return $this->fail( ...func_get_args() );
+                    return $this->fail( $event );
                 }
                 throw ListenerException::failError();
             } catch (\Throwable $e) {
@@ -38,17 +41,17 @@ abstract class Listener implements ListenerInterface
     }
 
     /**
-     * @param array $args
+     * @param EventInterface $event
      *
      * @return MediatorResponse
      */
-    abstract public function callback( ...$args ): MediatorResponse;
+    abstract public function callback( EventInterface $event ): MediatorResponse;
 
     /**
-     * @param array $args
+     * @param EventInterface $event
      *
      * @return MediatorResponse
      */
-    abstract public function fail( ...$args ): MediatorResponse;
+    abstract public function fail( EventInterface $event ): MediatorResponse;
 
 }

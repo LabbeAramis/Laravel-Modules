@@ -12,12 +12,16 @@ use LabbeAramis\Modules\MediatorResponse;
 interface ListenerInterface
 {
     /**
+     * @param EventInterface $event
+     *
      * @return MediatorResponse
      */
-    public function callback(): MediatorResponse;
+    public function callback( EventInterface $event ): MediatorResponse;
 
     /**
+     * @param EventInterface $event
+     *
      * @return MediatorResponse
      */
-    public function fail(): MediatorResponse;
+    public function fail( EventInterface $event ): MediatorResponse;
 }
