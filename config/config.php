@@ -27,7 +27,7 @@ return [
 
     'stubs'    => [
         'enabled'      => false,
-        'path'         => base_path( 'vendor/LabbeAramis/Laravel-Modules/src/Commands/stubs' ),
+        'path'         => base_path( 'vendor/labbearamis/laravel-modules/src/Commands/stubs' ),
         'files'        => [
             'routes/web'      => 'Routes/web.php',
             'routes/api'      => 'Routes/api.php',
