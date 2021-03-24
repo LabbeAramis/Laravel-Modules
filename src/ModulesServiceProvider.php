@@ -6,7 +6,13 @@ use Illuminate\Support\ServiceProvider;
 use LabbeAramis\Modules\Providers\BootstrapServiceProvider;
 use LabbeAramis\Modules\Providers\ConsoleServiceProvider;
 use LabbeAramis\Modules\Providers\ContractsServiceProvider;
+use LabbeAramis\Modules\Providers\EventServiceProvider;
 
+/**
+ * Class ModulesServiceProvider
+ *
+ * @package LabbeAramis\Modules
+ */
 abstract class ModulesServiceProvider extends ServiceProvider
 {
     /**
@@ -28,7 +34,8 @@ abstract class ModulesServiceProvider extends ServiceProvider
      */
     protected function registerModules()
     {
-        $this->app->register(BootstrapServiceProvider::class);
+
+        $this->app->register( BootstrapServiceProvider::class );
     }
 
     /**
@@ -36,12 +43,13 @@ abstract class ModulesServiceProvider extends ServiceProvider
      */
     protected function registerNamespaces()
     {
+
         $configPath = __DIR__ . '/../config/config.php';
 
-        $this->mergeConfigFrom($configPath, 'modules');
-        $this->publishes([
-            $configPath => config_path('modules.php'),
-        ], 'config');
+        $this->mergeConfigFrom( $configPath, 'modules' );
+        $this->publishes( [
+            $configPath => config_path( 'modules.php' ),
+        ], 'config' );
     }
 
     /**
@@ -56,6 +64,7 @@ abstract class ModulesServiceProvider extends ServiceProvider
      */
     public function provides()
     {
+
         return [Contracts\RepositoryInterface::class, 'modules'];
     }
 
@@ -64,7 +73,9 @@ abstract class ModulesServiceProvider extends ServiceProvider
      */
     protected function registerProviders()
     {
-        $this->app->register(ConsoleServiceProvider::class);
-        $this->app->register(ContractsServiceProvider::class);
+
+        $this->app->register( ConsoleServiceProvider::class );
+        $this->app->register( ContractsServiceProvider::class );
+        $this->app->register( EventServiceProvider::class );
     }
 }
