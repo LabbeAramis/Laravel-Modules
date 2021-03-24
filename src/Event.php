@@ -14,7 +14,7 @@ class Event implements EventInterface
     /**
      * @var bool
      */
-    private bool $isRollback;
+    private bool $isRollback = false;
 
     /**
      * @return bool
