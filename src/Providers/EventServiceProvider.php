@@ -2,10 +2,8 @@
 
 namespace LabbeAramis\Modules\Providers;
 
-use Illuminate\Contracts\Queue\Factory as QueueFactoryContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use LabbeAramis\Modules\Facades\Mediator as MediatorFacade;
-use LabbeAramis\Modules\Mediator;
+use LabbeAramis\Modules\Facades\Event;
 
 /**
  * Class EventServiceProvider
@@ -28,12 +26,12 @@ class EventServiceProvider extends ServiceProvider
 
             foreach ($events as $event => $listeners) {
                 foreach (array_unique( $listeners ) as $listener) {
-                    MediatorFacade::listen( $event, $listener );
+                    Event::listen( $event, $listener );
                 }
             }
 
             foreach ($this->subscribe as $subscriber) {
-                MediatorFacade::subscribe( $subscriber );
+                Event::subscribe( $subscriber );
             }
         } );
     }
