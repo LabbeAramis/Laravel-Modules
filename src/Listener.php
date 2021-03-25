@@ -27,19 +27,17 @@ abstract class Listener implements ListenerInterface
         try {
 
             if ( $event->isRollback() === true ) {
+
                 throw ListenerException::callbackError();
             }
 
-            if ( $event->getBeforeHandleCallback() instanceof Closure ) {
-                ( $event->getBeforeHandleCallback() )();
-            }
+            $event->beforeHandleCallback();
 
             if ( method_exists( $this, 'callback' ) === true ) {
+
                 $response = $this->callback( $event );
 
-                if ( $event->getAfterHandleCallback() instanceof Closure ) {
-                    ( $event->getAfterHandleCallback() )();
-                }
+                $event->afterHandleCallback();
 
                 return $response;
             }
@@ -50,16 +48,13 @@ abstract class Listener implements ListenerInterface
 
             try {
 
-                if ( $event->getBeforeFailCallback() instanceof Closure ) {
-                    ( $event->getBeforeFailCallback() )();
-                }
+                $event->beforeFailCallback();
 
                 if ( method_exists( $this, 'fail' ) === true ) {
+
                     $response = $this->fail( $event );
 
-                    if ( $event->getAfterFailCallback() instanceof Closure ) {
-                        ( $event->getAfterFailCallback() )();
-                    }
+                    $event->afterFailCallback();
 
                     return $response;
                 }

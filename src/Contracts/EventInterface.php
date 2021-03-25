@@ -70,4 +70,24 @@ interface EventInterface
      * @return $this
      */
     public function setAfterFailCallback( ?Closure $afterFailCallback ): self;
+
+    /**
+     * beforeHandleCallback
+     */
+    public function beforeHandleCallback(): void;
+
+    /**
+     * afterHandleCallback
+     */
+    public function afterHandleCallback(): void;
+
+    /**
+     * beforeFailCallback
+     */
+    public function beforeFailCallback(): void;
+
+    /**
+     * afterFailCallback
+     */
+    public function afterFailCallback(): void;
 }

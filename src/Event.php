@@ -147,4 +147,48 @@ class Event implements EventInterface
         return $this;
     }
 
+    /**
+     * beforeHandleCallback
+     */
+    public function beforeHandleCallback(): void
+    {
+
+        if ( $this->beforeHandleCallback instanceof Closure ) {
+            $this->beforeHandleCallback();
+        }
+    }
+
+    /**
+     * afterHandleCallback
+     */
+    public function afterHandleCallback(): void
+    {
+
+        if ( $this->afterHandleCallback instanceof Closure ) {
+            $this->afterHandleCallback();
+        }
+    }
+
+    /**
+     * beforeFailCallback
+     */
+    public function beforeFailCallback(): void
+    {
+
+        if ( $this->beforeFailCallback instanceof Closure ) {
+            $this->beforeFailCallback();
+        }
+    }
+
+    /**
+     * afterFailCallback
+     */
+    public function afterFailCallback(): void
+    {
+
+        if ( $this->afterFailCallback instanceof Closure ) {
+            $this->afterFailCallback();
+        }
+    }
+
 }
