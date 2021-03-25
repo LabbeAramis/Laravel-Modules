@@ -12,6 +12,11 @@ use Closure;
 interface EventInterface
 {
     /**
+     * @return string
+     */
+    public function getName(): string;
+
+    /**
      * @return bool
      */
     public function isRollback(): bool;

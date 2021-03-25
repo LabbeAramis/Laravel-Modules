@@ -10,7 +10,7 @@ use LabbeAramis\Modules\Contracts\EventInterface;
  *
  * @package LabbeAramis\Modules
  */
-class Event implements EventInterface
+abstract class Event implements EventInterface
 {
     /**
      * @var bool
@@ -36,6 +36,18 @@ class Event implements EventInterface
      * @var Closure|null
      */
     private ?Closure $afterFailCallback = null;
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+
+        return property_exists( $this, 'name' ) === true
+        && is_string( $this->name ) === true ?
+            $this->name :
+            get_class( $this );
+    }
 
     /**
      * @return bool

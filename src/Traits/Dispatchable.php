@@ -2,6 +2,7 @@
 
 namespace LabbeAramis\Modules\Traits;
 
+use LabbeAramis\Modules\Contracts\EventInterface;
 use LabbeAramis\Modules\MediatorResponse;
 
 /**
@@ -19,7 +20,10 @@ trait Dispatchable
     public static function dispatch()
     {
 
-        return mediator_event( new static( ...func_get_args() ) );
+        /** @var EventInterface $instance */
+        $instance = new static( ...func_get_args() );
+
+        return mediator_event( $instance->getName(), $instance );
     }
 
     /**
