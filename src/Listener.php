@@ -68,7 +68,7 @@ abstract class Listener implements ListenerInterface
 
             } catch (\Throwable $e) {
 
-                throw ListenerException::handleError();
+                throw ListenerException::handleError( $e );
             }
         }
     }
