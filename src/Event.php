@@ -153,8 +153,8 @@ class Event implements EventInterface
     public function beforeHandleCallback(): void
     {
 
-        if ( $this->beforeHandleCallback instanceof Closure ) {
-            $this->beforeHandleCallback();
+        if ( $this->getBeforeHandleCallback() instanceof Closure ) {
+            ( $this->getBeforeHandleCallback() )();
         }
     }
 
@@ -164,8 +164,8 @@ class Event implements EventInterface
     public function afterHandleCallback(): void
     {
 
-        if ( $this->afterHandleCallback instanceof Closure ) {
-            $this->afterHandleCallback();
+        if ( $this->getAfterHandleCallback() instanceof Closure ) {
+            ( $this->getAfterHandleCallback() )();
         }
     }
 
@@ -175,8 +175,8 @@ class Event implements EventInterface
     public function beforeFailCallback(): void
     {
 
-        if ( $this->beforeFailCallback instanceof Closure ) {
-            $this->beforeFailCallback();
+        if ( $this->getBeforeFailCallback() instanceof Closure ) {
+            ( $this->getBeforeFailCallback() )();
         }
     }
 
@@ -186,8 +186,8 @@ class Event implements EventInterface
     public function afterFailCallback(): void
     {
 
-        if ( $this->afterFailCallback instanceof Closure ) {
-            $this->afterFailCallback();
+        if ( $this->getAfterFailCallback() instanceof Closure ) {
+            ( $this->getAfterFailCallback() )();
         }
     }
 
