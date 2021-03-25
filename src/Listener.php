@@ -57,7 +57,7 @@ abstract class Listener implements ListenerInterface
                 if ( method_exists( $this, 'fail' ) === true ) {
                     $response = $this->fail( $event );
 
-                    if ( $event->getAfterFailCallback() () instanceof Closure ) {
+                    if ( $event->getAfterFailCallback() instanceof Closure ) {
                         ( $event->getAfterFailCallback() )();
                     }
 
