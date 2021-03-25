@@ -29,7 +29,7 @@ final class MediatorResponse
      * @param null $data
      * @param bool $isSuccess
      */
-    public function __construct( $name = null, $data = null, bool $isSuccess = false )
+    public function __construct( $name = null, $data = null, bool $isSuccess = true )
     {
 
         $this->name      = $name;
