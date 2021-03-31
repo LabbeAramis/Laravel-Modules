@@ -55,7 +55,14 @@ class RouteEvent extends Event
             $this->controller = $controller;
         } elseif ( gettype($controller) === 'string' ) {
 
-            $this->controller = $this->createObject($controller);
+            $controller = $this->createObject($controller);
+            if ( $controller instanceof Controller ) {
+
+                $this->controller = $controller;
+            } else {
+
+                throw new \Exception('Can\'t create object');
+            }
         } else {
 
             throw new \Exception('Can\'t create object');
@@ -102,38 +109,42 @@ class RouteEvent extends Event
             if ( $reflection->isInstantiable() === true ) {
 
                 $constructor = $reflection->getConstructor();
-                $constructorParams = $constructor->getParameters();
 
-                $getDependencies = function(array $params = []) use ($className) {
+                if ( $constructor !== null ) {
 
-                    $dependencies = [];
+                    $constructorParams = $constructor->getParameters();
 
-                    /** @var ReflectionParameter $param */
-                    foreach ($params as $param) {
+                    $getDependencies = function(array $params = []) use ($className) {
 
-                        $class = $param->getDeclaringClass();
-                        if ( $class !== null ) {
-                            $paramClassName = $class->getName();
-                            $dependencies[] = $this->createObject($paramClassName);
-                        } elseif ( $param->hasType() === true ) {
-                            if ( $param->isDefaultValueAvailable() === true ) {
-                                $dependencies[] = $param->getDefaultValue();
+                        $dependencies = [];
+
+                        /** @var ReflectionParameter $param */
+                        foreach ($params as $param) {
+
+                            $class = $param->getDeclaringClass();
+                            if ( $class !== null ) {
+                                $paramClassName = $class->getName();
+                                $dependencies[] = $this->createObject($paramClassName);
+                            } elseif ( $param->hasType() === true ) {
+                                if ( $param->isDefaultValueAvailable() === true ) {
+                                    $dependencies[] = $param->getDefaultValue();
+                                } elseif ( $param->allowsNull() === true ) {
+                                    $dependencies[] = null;
+                                } else {
+                                    throw new \Exception('Can\'t create object "' . $className . '"');
+                                }
                             } elseif ( $param->allowsNull() === true ) {
                                 $dependencies[] = null;
                             } else {
                                 throw new \Exception('Can\'t create object "' . $className . '"');
                             }
-                        } elseif ( $param->allowsNull() === true ) {
-                            $dependencies[] = null;
-                        } else {
-                            throw new \Exception('Can\'t create object "' . $className . '"');
                         }
-                    }
 
-                    return $dependencies;
-                };
+                        return $dependencies;
+                    };
 
-                return $reflection->newInstance(...$getDependencies($constructorParams));
+                    return $reflection->newInstance(...$getDependencies($constructorParams));
+                }
             }
         }
     }
