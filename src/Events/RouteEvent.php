@@ -144,6 +144,9 @@ class RouteEvent extends Event
                     };
 
                     return $reflection->newInstance(...$getDependencies($constructorParams));
+                } else {
+
+                    return $reflection->newInstance();
                 }
             }
         }
