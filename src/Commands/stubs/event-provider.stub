@@ -3,6 +3,8 @@
 namespace $NAMESPACE$;
 
 use LabbeAramis\Modules\Providers\EventServiceProvider as ServiceProvider;
+use LabbeAramis\Modules\Events\RouteEvent;
+use LabbeAramis\Modules\Listeners\RouteListener;
 
 /**
  * Class EventServiceProvider
@@ -18,7 +20,9 @@ class $CLASS$ extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        //
+        RouteEvent::class=>[
+            RouteListener::class
+        ]
     ];
 
     /**
