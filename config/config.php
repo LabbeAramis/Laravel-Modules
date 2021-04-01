@@ -27,7 +27,7 @@ return [
 
     'stubs'    => [
         'enabled'      => false,
-        'path'         => base_path( 'vendor/labbearamis/laravel-modules/src/Commands/stubs' ),
+        'path'         => base_path('vendor/labbearamis/laravel-modules/src/Commands/stubs'),
         'files'        => [
             'routes/web'      => 'Routes/web.php',
             'routes/api'      => 'Routes/api.php',
@@ -71,7 +71,7 @@ return [
         |
         */
 
-        'modules' => base_path( 'Modules' ),
+        'modules' => base_path('Modules'),
         /*
         |--------------------------------------------------------------------------
         | Modules assets path
@@ -81,7 +81,7 @@ return [
         |
         */
 
-        'assets' => public_path( 'modules' ),
+        'assets' => public_path('modules'),
         /*
         |--------------------------------------------------------------------------
         | The migrations path
@@ -92,7 +92,7 @@ return [
         |
         */
 
-        'migration' => base_path( 'database/migrations' ),
+        'migration' => base_path('database/migrations'),
         /*
         |--------------------------------------------------------------------------
         | Generator path
@@ -101,6 +101,7 @@ return [
         | Set the generate key to false to not generate that folder
         */
         'generator' => [
+            'components'      => ['path' => 'Components', 'generate' => true],
             'config'          => ['path' => 'Config', 'generate' => true],
             'command'         => ['path' => 'Console', 'generate' => true],
             'migration'       => ['path' => 'Database/Migrations', 'generate' => true],
@@ -202,7 +203,7 @@ return [
     'scan' => [
         'enabled' => false,
         'paths'   => [
-            base_path( 'vendor/*/*' ),
+            base_path('vendor/*/*'),
         ],
     ],
     /*
@@ -267,7 +268,7 @@ return [
     'activators' => [
         'file' => [
             'class'          => FileActivator::class,
-            'statuses-file'  => base_path( 'modules_statuses.json' ),
+            'statuses-file'  => base_path('modules_statuses.json'),
             'cache-key'      => 'activator.installed',
             'cache-lifetime' => 604800,
         ],
