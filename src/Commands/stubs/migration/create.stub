@@ -27,6 +27,6 @@ $FIELDS$
      */
     public function down()
     {
-        Schema::dropIfExists('$TABLE$');
+        Schema::dropIfExists('$MODULE$_$TABLE$');
     }
 }
