@@ -13,7 +13,7 @@ class $CLASS$ extends Migration
      */
     public function up()
     {
-        Schema::create('$TABLE$', function (Blueprint $table) {
+        Schema::create('$MODULE$_$TABLE$', function (Blueprint $table) {
             $table->id();
 $FIELDS$
             $table->timestamps();

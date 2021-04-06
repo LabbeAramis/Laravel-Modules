@@ -66,38 +66,42 @@ class MigrationMakeCommand extends GeneratorCommand
     }
 
     /**
+     * @return mixed
      * @throws \InvalidArgumentException
      *
-     * @return mixed
      */
     protected function getTemplateContents()
     {
         $parser = new NameParser($this->argument('name'));
 
-        if ($parser->isCreate()) {
+        if ( $parser->isCreate() ) {
             return Stub::create('/migration/create.stub', [
-                'class' => $this->getClass(),
-                'table' => $parser->getTableName(),
+                'module' => Str::snake($this->getModuleName()),
+                'class'  => $this->getClass(),
+                'table'  => $parser->getTableName(),
                 'fields' => $this->getSchemaParser()->render(),
             ]);
-        } elseif ($parser->isAdd()) {
+        } elseif ( $parser->isAdd() ) {
             return Stub::create('/migration/add.stub', [
-                'class' => $this->getClass(),
-                'table' => $parser->getTableName(),
-                'fields_up' => $this->getSchemaParser()->up(),
+                'module'      => Str::snake($this->getModuleName()),
+                'class'       => $this->getClass(),
+                'table'       => $parser->getTableName(),
+                'fields_up'   => $this->getSchemaParser()->up(),
                 'fields_down' => $this->getSchemaParser()->down(),
             ]);
-        } elseif ($parser->isDelete()) {
+        } elseif ( $parser->isDelete() ) {
             return Stub::create('/migration/delete.stub', [
-                'class' => $this->getClass(),
-                'table' => $parser->getTableName(),
+                'module'      => Str::snake($this->getModuleName()),
+                'class'       => $this->getClass(),
+                'table'       => $parser->getTableName(),
                 'fields_down' => $this->getSchemaParser()->up(),
-                'fields_up' => $this->getSchemaParser()->down(),
+                'fields_up'   => $this->getSchemaParser()->down(),
             ]);
-        } elseif ($parser->isDrop()) {
+        } elseif ( $parser->isDrop() ) {
             return Stub::create('/migration/drop.stub', [
-                'class' => $this->getClass(),
-                'table' => $parser->getTableName(),
+                'module' => Str::snake($this->getModuleName()),
+                'class'  => $this->getClass(),
+                'table'  => $parser->getTableName(),
                 'fields' => $this->getSchemaParser()->render(),
             ]);
         }
@@ -151,13 +155,13 @@ class MigrationMakeCommand extends GeneratorCommand
     /**
      * Run the command.
      */
-    public function handle() : int
+    public function handle(): int
     {
-        if (parent::handle() === E_ERROR) {
+        if ( parent::handle() === E_ERROR ) {
             return E_ERROR;
         }
 
-        if (app()->environment() === 'testing') {
+        if ( app()->environment() === 'testing' ) {
             return 0;
         }
 
