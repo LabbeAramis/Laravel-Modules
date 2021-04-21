@@ -48,6 +48,8 @@ class PublishClientConfigurationCommand extends Command
             $config = $this->getConfig();
             if ( $config !== null && is_array( $config ) === true ) {
                 $config = array_merge( $defaultConfig, $config );
+            } else {
+                $config = $defaultConfig;
             }
             $config['modules'] = $this->getModules();
 
