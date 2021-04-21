@@ -101,11 +101,28 @@ class PublishClientConfigurationCommand extends Command
     {
 
         try {
-            return File::put( $this->getConfigPath(), json_encode( $config ) );
+            return File::put( $this->getConfigPath(), $this->formatConfig( json_encode( $config ) ) );
 
         } catch (Throwable $e) {
             throw new InvalidJsonException( 'Invalid format of the config file' );
         }
+    }
+
+    /**
+     * @param string $config
+     *
+     * @return string
+     */
+    private function formatConfig( string $config ): string
+    {
+
+        $config = str_replace( '{', PHP_EOL . '{', $config );
+        $config = str_replace( '}', '}' . PHP_EOL, $config );
+        $config = str_replace( '[', PHP_EOL . '[', $config );
+        $config = str_replace( ']', ']' . PHP_EOL, $config );
+        $config = str_replace( ',', ',' . PHP_EOL, $config );
+
+        return $config;
     }
 
     /**
