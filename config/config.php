@@ -188,6 +188,7 @@ return [
         Commands\ResourceMakeCommand::class,
         Commands\TestMakeCommand::class,
         Commands\LaravelModulesV6Migrator::class,
+        Commands\PublishClientConfigurationCommand::class,
     ],
 
     /*
