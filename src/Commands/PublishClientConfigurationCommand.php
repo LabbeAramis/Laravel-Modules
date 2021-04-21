@@ -116,10 +116,10 @@ class PublishClientConfigurationCommand extends Command
     private function formatConfig( string $config ): string
     {
 
-        $config = str_replace( '{', PHP_EOL . '{', $config );
-        $config = str_replace( '}', '}' . PHP_EOL, $config );
-        $config = str_replace( '[', PHP_EOL . '[', $config );
-        $config = str_replace( ']', ']' . PHP_EOL, $config );
+        $config = str_replace( '{', '{' . PHP_EOL, $config );
+//        $config = str_replace( '}', '}' . PHP_EOL, $config );
+        $config = str_replace( '[', '[' . PHP_EOL, $config );
+//        $config = str_replace( ']', ']' . PHP_EOL, $config );
         $config = str_replace( ',', ',' . PHP_EOL, $config );
 
         return $config;
